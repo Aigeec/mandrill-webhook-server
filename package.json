@@ -1,5 +1,5 @@
 {
-  "name": "mandrill-webhook",
+  "name": "mandrill-webhook-server",
   "version": "1.0.0",
   "description": "Node Module to act as inbound email webhook server for Mandrill",
   "main": "index.js",
@@ -46,6 +46,7 @@
     "jshint": "2.9.1",
     "jscs-md-reporter": "^0.1.6",
     "jsdoc-to-markdown": "^1.3.3",
-    "jshint-md-reporter": "0.1.0"
+    "jshint-md-reporter": "0.1.0",
+    "coveralls": "~2.11.6"
   }
 }
