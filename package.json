@@ -4,10 +4,7 @@
   "description": "Node Module to act as inbound email webhook for Mandrill",
   "main": "index.js",
   "scripts": {
-    "test": "grunt mochaTest",
-    "start": "node index",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui bdd -R spec -t 5000",
-    "ci": "grunt watch"
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec"
   },
   "repository": {
     "type": "git",
@@ -26,19 +23,13 @@
   "homepage": "https://github.com/Aigeec/mandrill-webhook",
   "dependencies": {
     "bluebird": "~3.1.1",
-    "lodash": "^4.0.0",
-    "mandrill-api": "~1.0.45"
+    "lodash": "^4.0.0"    
   },
   "devDependencies": {
     "mocha": "~2.3.4",
     "chai": "~3.4.1",
-    "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.11.3",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-mocha-test": "~0.12.7",
     "supertest": "~1.1.0",
     "express": "~4.13.3",
-    "grunt-jsdoc": "~1.1.0",
     "sinon": "~1.17.2",
     "sinon-chai": "~2.8.0",
     "proxyquire": "~1.7.3",
