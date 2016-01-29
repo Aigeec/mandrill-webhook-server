@@ -25,11 +25,11 @@
     };
   };
 
-  var mandrillServer = proxyquire('../src/mandrill-webhook', { './mandrill-webhook-mail-forwarder': forwarderStub });
+  var mandrillServer = proxyquire('../src/mandrill-webhook-server', { 'mandrill-webhook-mail-forwarder': forwarderStub });
   var server = mandrillServer(config);
   var app = express();
 
-  describe('#mandrill-webhook', function() {
+  describe('#mandrill-webhook-server', function() {
 
     app.use(server);
 
@@ -71,7 +71,7 @@
         };
       };
 
-      var mandrillServer = proxyquire('../src/mandrill-webhook', { './mandrill-webhook-mail-forwarder': forwarderStub });
+      var mandrillServer = proxyquire('../src/mandrill-webhook-server', { './mandrill-webhook-mail-forwarder': forwarderStub });
 
       app = express();
       app.use(mandrillServer(config));
@@ -92,10 +92,10 @@
 
       proxyquire.noCallThru();
 
-      var mandrillServer = proxyquire('../src/mandrill-webhook', {
+      var mandrillServer = proxyquire('../src/mandrill-webhook-server', {
         '../config': {},
-        './mandrill-webhook-request-validator': requestValidatorStub,
-        './mandrill-webhook-authenticator': function() {},
+        'mandrill-webhook-request-validator': requestValidatorStub,
+        'mandrill-webhook-authenticator': function() {},
       })();
     });
 

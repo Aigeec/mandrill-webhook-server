@@ -5,10 +5,10 @@
   var Q = require('bluebird');
   var config = require('../config');
 
-  var requestValidator = require('./mandrill-webhook-request-validator');
+  var requestValidator = require('mandrill-webhook-request-validator');
   var authenticator = require('mandrill-webhook-authenticator');
-  var parser = require('./mandrill-webhook-event-parser');
-  var forwarder = require('./mandrill-webhook-mail-forwarder');
+  var parser = require('mandrill-webhook-event-parser');
+  var forwarder = require('mandrill-webhook-mail-forwarder');
 
   var MandrillWebhookServer = function(options) {
 
@@ -48,10 +48,7 @@
           res.end('OK');
         },
 
-        function(err) {
-          err = err || { message: 'No message provided' };
-          next(err);
-        }
+        next
       );
     };
 
