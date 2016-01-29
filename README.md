@@ -5,11 +5,25 @@ A small server to process Mandrill inbound web-hooks and uses Mandrill to forwar
 ## Installation
 
 ```bash
-  npm install mandrill-webhook --save
+  npm install mandrill-webhook-server --save
 ```
 ## Usage
 ```javascript
-  var mandrillWebhook = require('mandrill-webhook')(options);
+(function() {
+  'use strict';
+
+  var http = require('http');
+  var mandrillWebhookServer = require('mandrill-webhook-server.js');
+
+  var server = http.createServer(mandrillWebhookServer());
+
+  var port = 3000;
+
+  server.listen(port, function() {
+    console.log('Listening on port %s', port);
+  });
+
+})();
 ```
 ## Options
 
