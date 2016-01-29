@@ -83,21 +83,7 @@
       .send('mandrill_events=' + encodeURIComponent('[{"msg": {"from_email": "test@example.com"}}]'))
       .expect(500, done);
 
-    });
-
-    it('should default to the config if no options are provided', function() {
-      var requestValidatorStub = function(config) {
-        expect(config).to.deep.equal({});
-      };
-
-      proxyquire.noCallThru();
-
-      var mandrillServer = proxyquire('../src/mandrill-webhook-server', {
-        '../config': {},
-        'mandrill-webhook-request-validator': requestValidatorStub,
-        'mandrill-webhook-authenticator': function() {},
-      })();
-    });
+    });  
 
   });
 

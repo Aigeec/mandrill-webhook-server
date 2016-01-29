@@ -3,7 +3,6 @@
 
   var _ = require('lodash');
   var Q = require('bluebird');
-  var config = require('../config');
 
   var requestValidator = require('mandrill-webhook-request-validator');
   var authenticator = require('mandrill-webhook-authenticator');
@@ -15,8 +14,6 @@
     if (!(this instanceof MandrillWebhookServer)) {
       return new MandrillWebhookServer(options);
     }
-
-    config = options || config;
 
     var processPostBody = function(body) {
       var content = body.split('=');
@@ -40,7 +37,7 @@
 
     var forwardEvents = function(req, res, next) {
 
-      var promises = _.map(req.mandrillEvents, forwarder(config));
+      var promises = _.map(req.mandrillEvents, forwarder(options));
 
       Q.all(promises).done(
         function() {
@@ -54,9 +51,9 @@
 
     var filters = [];
 
-    filters.push(requestValidator(config));
+    filters.push(requestValidator(options));
     filters.push(bodyParser);
-    filters.push(authenticator(config));
+    filters.push(authenticator(options));
     filters.push(parser());
     filters.push(forwardEvents);
 
