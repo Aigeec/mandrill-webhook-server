@@ -1,6 +1,6 @@
 {
   "name": "mandrill-webhook",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Node Module to act as inbound email webhook server for Mandrill",
   "main": "index.js",
   "scripts": {
