@@ -13,9 +13,10 @@ A small server to process Mandrill inbound web-hooks and uses Mandrill to forwar
   'use strict';
 
   var http = require('http');
-  var mandrillWebhookServer = require('mandrill-webhook-server.js');
+  var mandrillWebhookServer = require('mandrill-webhook-server');
+  var config = require('./config');
 
-  var server = http.createServer(mandrillWebhookServer());
+  var server = http.createServer(mandrillWebhookServer(config));
 
   var port = 3000;
 
