@@ -18,7 +18,10 @@
     var processPostBody = function(body) {
       var content = body.split('=');
       var postBody = {};
-      postBody[content[0]] = decodeURIComponent(content[1]);
+      if (content[1]) {
+        postBody[content[0]] = decodeURIComponent(content[1].replace(/\+/g, ' '));
+      }
+
       return postBody;
     };
 
