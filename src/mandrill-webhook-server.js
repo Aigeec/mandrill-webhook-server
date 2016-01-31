@@ -3,6 +3,7 @@
 
   var _ = require('lodash');
   var Q = require('bluebird');
+  var http = require('http');
 
   var requestValidator = require('mandrill-webhook-request-validator');
   var authenticator = require('mandrill-webhook-authenticator');
@@ -38,18 +39,9 @@
       });
     };
 
-    var forwardEvents = function(req, res, next) {
-
-      var promises = _.map(req.mandrillEvents, forwarder(options));
-
-      Q.all(promises).done(
-        function() {
-          res.writeHead(200);
-          res.end('OK');
-        },
-
-        next
-      );
+    var returnOk = function(req, res) {
+      res.writeHead(200);
+      res.end('Ok');
     };
 
     var filters = [];
@@ -58,7 +50,8 @@
     filters.push(bodyParser);
     filters.push(authenticator(options));
     filters.push(parser());
-    filters.push(forwardEvents);
+    filters.push(forwarder(options));
+    filters.push(returnOk);
 
     var server = function(req, res) {
       var idx = 0;

@@ -18,10 +18,8 @@
   var Q = require('bluebird');
 
   var forwarderStub = function() {
-    return function() {
-      var deferred = Q.defer();
-      deferred.resolve();
-      return deferred.promise;
+    return function(req, res, next) {
+      next();
     };
   };
 
@@ -55,10 +53,8 @@
 
     it('should return 500 in the event of an error', function(done) {
       var forwarderStub = function(config) {
-        return function() {
-          var deferred = Q.defer();
-          deferred.reject();
-          return deferred.promise;
+        return function(req, res, next) {
+          next(new Error());
         };
       };
 
